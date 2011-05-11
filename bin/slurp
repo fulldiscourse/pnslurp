@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+# Slurps notes from the given file (notes.slurper by default) and creates
+# ProjectNotifier notes from them. 
+
+# Default note values and API token information should be provided in a
+# ~/.slurper.yml file.
+
+
+$:.unshift(File.join(File.dirname(File.dirname(__FILE__)),'lib'))
+require 'rubygems'
+require 'slurper'
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.on("-r", "--reverse", "Reverse note creation order") do |v|
+    options[:reverse] = v
+  end
+  options[:tag] = nil
+  opts.on( '-t', '--tag TAGS', 'Apply tag to all notes during slurp.' ) do |tag|
+    options[:tag] = tag
+  end
+end.parse!
+
+note_file = ARGV.empty? ? "notes.slurper" : ARGV[0]
+
+Slurper.slurp(note_file, options[:reverse], options[:tag])

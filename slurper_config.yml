@@ -1,0 +1,5 @@
+account: fd # found in the address bar in ProjectNotifier
+project: edo # found in the address bar in ProjectNotifier
+token: oZpxSx7cerJ4ou3j99qC # found under Account menu in ProjectNotifier
+default_tags: everyone, dev
+# host: localhost:3001
